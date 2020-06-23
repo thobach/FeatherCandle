@@ -2,7 +2,8 @@
 #include "data7x15.h"           // Flame animation data
 
 // using the FeatherWing version
-Adafruit_IS31FL3731_Wing leds = Adafruit_IS31FL3731_Wing();
+Adafruit_IS31FL3731_Wing ledsFront = Adafruit_IS31FL3731_Wing();
+Adafruit_IS31FL3731_Wing ledsBack = Adafruit_IS31FL3731_Wing();
 
 uint8_t        page = 0;    // Front/back buffer control
 const uint8_t *ptr  = anim; // Current pointer into animation data
@@ -11,13 +12,19 @@ const uint8_t  h    = 15;   // image height
 uint8_t        img[w*h]; // Buffer for rendering image
 
 void setup() {
-//  Serial.begin(9600);
-//  Serial.println("Feather Candle");
+  Serial.begin(9600);
+  Serial.println("Feather Candle");
 
-  if (! leds.begin()) {
-//    Serial.println("IS31 not found");
+  if (! ledsFront.begin(0x77) ) {
+    Serial.println("IS31 Front not found");
     while (1);
   }
+
+  if (! ledsBack.begin(0x74)) {
+    Serial.println("IS31 Back not found");
+    while (1);
+  }
+  
 }
 
 void loop() {
@@ -38,18 +45,24 @@ void loop() {
   // Read rectangle of data from anim[] into portion of img[] buffer
   for(uint8_t y=y1; y<=y2; y++)
     for(uint8_t x=x1; x<=x2; x++) { 
-      img[y*w + x] = pgm_read_byte(ptr++);
+      img[y*w + x] = pgm_read_byte(ptr++)/2;
   }
 
   page ^= 1; // Flip front/back buffer index
-  leds.setFrame(page);
+  ledsFront.setFrame(page);
+  ledsBack.setFrame(page);
 
   int i = 0;
   for (uint8_t x=0; x<h; x++) {
     for (uint8_t y=0; y<w; y++) {
-      leds.drawPixel(x, y, img[i++]);  
+      uint8_t mirroredX = h-x-1;
+      uint8_t mirroredY = w-y-1;
+      ledsFront.drawPixel(mirroredX, mirroredY, img[i]);
+      ledsBack.drawPixel(mirroredX, mirroredY, img[i]);
+      i++; 
     }
   }
 
-  leds.displayFrame(page);
+  ledsFront.displayFrame(page);
+  ledsBack.displayFrame(page);
 }
