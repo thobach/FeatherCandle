@@ -27,4 +27,14 @@ The 'frames.zip' archive contains the animation source PNG images and a python s
 Adobe Illustrator files for and instructions for  laser cut carvings will follow
 
 # Assembly
-Pictures will follow
+<table>
+  <tr><th>Assembly</th><th>Laser</th><th>Laser settings</th></tr>
+  <tr><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/assembly.jpg" width="200" /></td><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/laser.jpg" width="400" /></td><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/laser-settings.jpg" width="200" /></td><tr>
+</table>
+
+<table>
+  <tr><th>Front (turned off)</th><th>Left</th><th>Back (turned on)</th><th>Right</th></tr>
+  <tr><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/IMG_4987.jpg" width="200" /></td><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/IMG_4991.jpg" width="200" /></td><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/IMG_4993.jpg" width="200" /></td><td><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/IMG_4991.jpg" width="200" /></td><tr>
+</table>
+
+* Final product:<br /><a href="https://www.youtube.com/watch?v=nKaIQyOhyZ4"><img src="https://raw.githubusercontent.com/thobach/FeatherCandle/master/Screenshot-Video.png" width="600" />
